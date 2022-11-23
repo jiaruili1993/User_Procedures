@@ -1,0 +1,36 @@
+IGOR
+WAVES/T/N=(8,13)	w_peakfunc_comments
+BEGIN
+	"_none"	"Lorentz"	"Gauss"	"Doniach-Sunjic"	"Fermi-liquid"	"marginal-FL"	"empirical-FL"	"MDC_V2"	"Gapped Fermi-liquid"	"Gap SC EDC"	"Gap SC iso clean"	"Gap SC iso dirty"	"Gap SC iso self-consistent"
+	""	"position"	"position"	"position"	"position"	"position"	"position"	"position"	"position"	"gap"	"Gamma0"	"Gamma0"	"Gamma0"
+	""	"intensity"	"intensity"	"intensity"	"intensity"	"intensity"	"intensity"	"intensity"	"intensity"	"gamma_u"	"Gap0"	"Gap0"	"Gap0"
+	""	"FWHM"	"FWHM"	"FWHM"	"impurity"	"impurity"	"a0"	"k1"	"impurity"	"gamma_0"	"d_pos"	"d_pos"	"d_pos"
+	""	""	""	"asymmetry"	"beta"	"lambda"	"b_x_w"	"k2"	"beta"	"Intensity"	"Intensity"	"Intensity"	"Intensity"
+	""	""	""	""	""	""	"c_x_w2"	""	""	""	""	""	""
+	""	""	""	""	""	""	""	""	""	""	""	""	""
+	"0"	"3"	"3"	"4"	"4"	"4"	"5"	"4"	"4"	"4"	"4"	"4"	"4"
+END
+X SetScale/P x 0,1,"", w_peakfunc_comments; SetScale/P y 0,1,"", w_peakfunc_comments; SetScale d 0,0,"", w_peakfunc_comments
+
+WAVES/T/N=(8,7)	w_bkgfunc_comments
+BEGIN
+	"_none"	"constant"	"2. order polynom"	"3. order polynom"	"exponential"	"linear time FD function"	"Shirley Bg"
+	""	"constant"	"0. order"	"0. order"	"offset"	"0. order"	"prefactor"
+	""	""	"1. order"	"1. order"	"intensity"	"1. order"	""
+	""	""	"2. order"	"2. order"	"decay"	"start"	""
+	""	""	""	"3. order"	""	"broadness"	""
+	""	""	""	""	""	""	""
+	""	""	""	""	""	""	""
+	"0"	"1"	"3"	"4"	"3"	"4"	"1"
+END
+X SetScale/P x 0,1,"", w_bkgfunc_comments; SetScale/P y 0,1,"", w_bkgfunc_comments; SetScale d 0,0,"", w_bkgfunc_comments
+
+WAVES/T	w_F_off_conv_comments
+BEGIN
+	"Fermi-level"
+	"Temperature"
+	"offset"
+	"offset-slope"
+	"Gauss.-FWHM"
+END
+X SetScale/P x 0,1,"", w_F_off_conv_comments; SetScale y 0,0,"", w_F_off_conv_comments

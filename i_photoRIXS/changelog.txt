@@ -1,0 +1,241 @@
+###########################################################################
+#
+# i_photo changelog.
+# ==================
+#
+# Please document here all changes you made to the i_photo macros.
+# also, do not forget to increase number in the #pragma version statement
+# in each file you modify, and also in i_init.ipf. This number is not the
+# same as the version number of the distribution.
+#
+# Format:
+# -------
+#
+# - this is in chronological order, starting with most recent from the top
+#
+# - Make sure each line is not longer than 79 characters.
+#
+# - Each entry should look like this:
+#
+#   <Date> <Your name>, Version <Version number>
+#
+#   <an itemized list of the changes you made>
+#
+###########################################################################
+
+Jul 20 2009, Felix Schmitt, Version 2.22
+  - Updated i_help.ihf to reflect the latest changes
+  - New feature: ability to selectively browse and delete data sets and 
+    tight binding models in the cut planner window
+  - minor bug fixes
+  - bug fix: i_prettypretty used to not apply changes if the graph was
+    selected from the list box instead of a focus change
+  - bug fix/feature: i_prettypretty now imports contours as well. The
+    contours now work properly.
+  - New feature: import the cut geometry from the top graph currently 
+    displayed in the display panel into the cut planner. Also, a live 
+    display of the cut position from the display panel is possible now.
+
+
+Jun 1 2009, Felix Schmitt, Version 2.20
+  - Major bug fixes and code clean up. Bumped all version #pragma 
+    statements, since the changes are relatively big.
+  - New file: i_help.ihf, provides a global, centralized help/documentation
+    for the entire i_photo. This should help new users get started and also
+    make veterans familiar with changes and little quirks...
+  - New module: i_lda, provides function to manipulate bxsf LDA files.
+    i_fileloader now can load BXSF files, as for example produced by
+    Wien2k.
+  - New feature: real time contours in prettypretty.
+  - MAJOR rewrite of the "Precise" FS mapping algorithm. It now features a
+    homegrown Newtonian numerical backmapping that increases precision and
+    runs by a factor 10 to 20 faster than the original algorithm. For the
+    end user, that means that the FS map is more precise and runs more
+    stable
+    especially for the low energy (hn=7eV) FS maps.
+  - Added new angle (alpha) throughout i_photo, in order to make them
+    usable for the ALS system as well.
+  - Added/ported Makoto's FITS loader for Eli Rothenberg's data
+    acquisition software used at ALS.
+  - Added feature: reference square, to help orienting the BZ in real
+    time at the beam line.
+  - Added a new field for the WaveNote/Metainfo called
+    AngleSignConventions.
+    This provides the capabilities to reverse the sign of any angle used
+    in the FS mapping/conversion between angles and k-space. This was
+    neccessary since not all our experimental setups have the same sign
+    conventions for the rotation angles.
+  - Added feature: DC has now the capability to overlay LDA bands over the
+    data in real time.
+  - Bug fixes include:
+      - Prettypretty: added/fixed contours. Fixed crash whan starting up
+        without any graphs at all. Wrote bug fix for Igor bug (Igor
+        crashed when setting the contour numbers to zero, i.e. disabling
+        contours). Changing the scale between relatve and absolute now
+        works consistently. Changed graph scaling of range/contour slider
+        graphs.
+      - DC: cursors for EDC/MDC were reversed. Fixed.
+      - Autosave fixes; autosave used to crash/stop working whenever
+        somebody was editing a procedure file and Igor failed to compile
+        them when it needed to call the autosave function. Now, as
+        soon as the user compiles his/her code successfully, the autosave
+        will restart automatically.
+      - LDA tab in DC now has the right unit conversions attached to the
+        check box...
+      - Process: Macro names were reversed for reduce x/reduce y. Fixed.
+      - Filetable: When multiple rows in a column were marked, the range
+        popup appeared. When cancel was pressed, the first value of the
+        selection was set to zero anyway. Fixed.
+      - Fileloader: When loading multiple waves/Manipulator scans, the
+        Igor sorting was not working correctly, since e.g. the wave w_2
+        will come after w_19 and before w_20. Changed loader such that it
+        would generate wave names with leading zeroes, i.e. w_001, ...
+      - lda: module source code is now documented.
+      - process: in the symmetrize tab, the EF value is now autofilled from
+        the selected wave.
+      - main module (i_photo): fixed auto-compile issue.
+
+
+May 13 2008, Felix Schmitt, Version 2.10
+  - Took out Igor's "advanced" image processing tools again, since these
+    tools are made with the typical Igor philosophy: As many features as
+    possible, and all of them half-assed. They are indeed very feature-
+    rich, but none of them works properly. Instead provided i_prettypretty,
+    which does pretty much the same, with the minor difference that
+    i_prettypretty actually works.
+  - minor bugfixes in i_DC
+  - minor overall bugfixes: some buttons were dead after the massive
+    rewrite since the names changed/because of typeos.
+  - improved the Precise method in i_fsmap: it now can handle unequally
+    spaced data sets. Also, the original algorithm had intensity ripples or
+    bubbles. These artefacts of the method are now gone and the map is now
+    much smoother.
+
+
+Nov 1 2007, Felix Schmitt, Version 2.00
+
+  - deleted image_contrast1.0
+    Reason: Igor offers far more advanced image processing tools. See Image
+    processing help in Igor Pro.
+  i_help:
+    - created a help panel that lets one browse all defined functions
+      easily.
+  i_init:
+    - renamed to i_photo
+    - modified initialization routines. No Igor version check is done
+      anymore. Advantage is that it makes the code much more legible and
+      flexible w/ regard to changes. Nothing clutters up the Procedures
+      window anymore. Version check is done by setting #pragma IgorVersion
+      = 5 in all module files. Only drawback is that this does not work for
+      Igor version 3.04. But this is so old that nobody probably uses it
+      anymore.
+    - took out the main panel menu. It is now accessible through the
+      i_photo scrolldown menu.
+    The only drawback
+  - deleted unneccessary files in i_photo
+  - merged "whats new.rtf" and "Wei-Sheng's modifications" into this
+    changelog
+  - changed global naming scheme: Any Functions that are public are
+    prefixed with their filename, e.g. the function to open the fs mapper
+    is in file i_fsmap and thus is called fsmap_open(). Private functions
+    are now private, using the Static keyword.
+  i_mapper:
+  - renamed to i_fsmap
+  - almost completely rewritten. Offers now three different mapping
+    methods:
+    Voronoi, Precise, Baumberger. Baumerger method contains the vintage
+    code. Changed the wavenote behavior; i_fsmap does not change them
+    anymore. If there is something missing/not good, it will abort with an
+    error and will ask you to use the completely revised i_filetable.
+  i_filetable:
+  - complete rewrite, featuring a dynamic table to change selected fields
+    of the wavenotes. Also features a tab with defaults for common systems
+    like SSRL, ALS and so on.
+  BZ_mapper:
+    - renamed to i_bzplanner
+    - complete rewrite. Now features:
+    - a TB model tab for easy graphing of TB models
+    - more freedom in adding data
+    - misc stuff like a way to map the experimental setup of the Wolf group
+      in Berlin
+  i_process:
+    - added a primitive macro recorder that records all processing done on
+      one wave and then lets you apply it to a selection of waves
+  i_prefs:
+  i_Utilities:
+  - renamed to i_utils
+  i_fit_core, i_fit_interface, i_fitfunction:
+  - merged into one file, i_fit, and deleted afterwards
+  i_LEED:
+  - renamed into i_leed
+
+
+
+
+DATE UNKNOWN, Wei-Sheng Lee, Version 1.02
+
+  i_DC:
+  - Add "BZPos" function
+  i_process:
+  - change the sign in map_flipStage_cut to match the SSRL case.
+  - Add lattice constant information
+
+
+
+
+Nov 12 2004, Felix Baumberger, Version 1.02
+
+  new features and changed behaviors:
+
+  - added two items to the marquee-menu for quick and easy normalization of
+  1D
+    and 2D waves
+  - the DC panel now extracts and displays the collapsed DC, if the
+    checkbox is activated
+  - new 'drag and drop' loader for (hopefully all) croissant files.
+  - drag and drop loader for tif, jpg, and bmp files
+  - SES-loader reads now manipulator angles for 1.2.2 files
+
+  bug fixes & minor changes:
+
+    normalization:
+    - angle calibration does no longer report a 'duplicate error'
+    - all normalization functions should now work without any wave-note
+    entries
+    - liberal data-folder names do no longer produce cryptic error messages
+    - cropping now updates slice-number and CCD-range in the wave-note
+    - angle calibration now allows negative deg/channel values
+
+    display-panel:
+    - better attempt to find meaningful axis labels
+    - "add DC" no longer overwrites trace colors
+    - collapse/uncollapse works now for both DCs in the display panel
+    - DC-offsets work now correctly for less than 3 DCs and for DCs
+    containing
+      NaNs
+    - the last DC is no longer offset in y
+
+    fit-panel:
+    - improved stability and convergence when fitting to convolutions
+    - corrected formulas for Fermi-liquid, marginal-Fermi-liquid, and
+      'empirical-Fermi-liquid' in the fit-panel
+    - 'top-graph' button works
+
+    gold-panel:
+    - solved the convergence problem that appeared in Igor 5.02
+
+    mapper:
+    - returns no longer an empty map, if the energy window is smaller than
+      the step-size in the data
+    - works now correctly for multiple manipulator angles in the direction
+      of the analyzer parallel-detection
+    - 'edit' button for offsets works
+    - removed annoying interpolation artifacts along the boundaries of the
+      map
+    - added option 'normalize to 1' in the angular transmission function
+      normalization
+
+  Windoze-specific:
+  - igor-version check works now correctly on Windows
+  - improved positioning of command window and main panel
+

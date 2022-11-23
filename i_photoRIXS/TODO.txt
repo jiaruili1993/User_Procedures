@@ -1,0 +1,2 @@
+- Feature: FSmap: window layout is still screwed of FS map
+- Feature: BZplanner: some easy export from BZ planner
