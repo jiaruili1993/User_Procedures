@@ -8,3 +8,9 @@ Then, repeat the process:
 	run ARPES_SProc.pxt
 	open procedure, open RIXS_Stanford.ipf
 Done.
+
+The Igor Pro 8 activation information:
+Serial number: 37213
+Activation key: GMJD-DPKP-UMEG-UKZP-SZEX-SMVJ-LEE
+Product: Igor Pro 8
+License type: 15-Seat Multi-User/Academic/English
