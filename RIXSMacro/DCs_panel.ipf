@@ -44,7 +44,7 @@ DFREF DFR_DCs=init_DC_Display()
 
 	Variable r=57000, g=57000, b=57000	
 	// raw DC tab
-	Variable SC = ScreenSize(5)
+	Variable SC = ScreenSize(5)*1.5
 	
 	Groupbox DCs_gb0, pos={230*SC,30*SC}, size={150*SC,130*SC}, frame=0,title="define DC's",  disable=1
 	CheckBox DCs_c0, pos={238*SC,45*SC}, title="EDC's",labelBack=(r,g,b), proc=Proc_checkbox_DCdimchange, value=1, disable=1
