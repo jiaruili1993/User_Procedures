@@ -28,7 +28,7 @@ Function Open_main_Panel(ctrlName)
 	
 	DFREF DF = GetDataFolderDFR()
 	
-	Variable SC = ScreenSize(5)*1.5
+	Variable SC = ScreenSize(5)
 
    
       Variable SR = Igorsize(3) 

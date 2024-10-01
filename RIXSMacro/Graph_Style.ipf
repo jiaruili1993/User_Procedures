@@ -1613,7 +1613,7 @@ Function GP_JoinSlices()
 	String Tracename="",Tlist=TraceNamelist(Wname,";",1)
 	//Tlist=SortList(Tlist,";",16)
 	Variable items=itemsInlist(Tlist,";")
-	
+
 	Variable y0,y1,yscaleflag,reverseflag
 	y0=0
 	y1=1
@@ -1698,13 +1698,11 @@ Function GP_JoinSlices()
 		Pnum=1
 	endif
 	
-
 	SetDatafolder Trace_path
 	newDatafolder /o/s Graph_Proc
 	make /o /n=(Pnum,1) JoinWave
 	setscale /I x,x1,x2,JoinWave
-	print x1
-	print x2
+	
 	
 	do
 

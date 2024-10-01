@@ -74,7 +74,7 @@ Function add_Tab_process()
 
 	Variable r=57000, g=57000, b=57000
 
-	Variable SC=Screensize(5)*1.5
+	Variable SC=Screensize(5)
 
 //	GroupBox Scale_gb11, frame=0, labelBack=0, pos={230*SC,35*SC}, size={400*SC,70*SC}, title="angles_shift" , disable=1
 //	SetVariable Scale_sv10, pos={235*SC,55*SC}, size={95*SC,15*SC}, labelBack=(r,g,b), limits={-inf,inf,0}, title="Set to:", value=gv_csr_Set, disable=1//proc=Proc_angle_change
@@ -121,13 +121,11 @@ Function add_Tab_process()
 	Button bkg_b10, pos={566*SC,170*SC},size={60*SC,18*SC}, labelback=(r,g,b),title="reset", disable=1, proc=reset_image
 
 	Groupbox bkg_gp0, frame=0, labelBack=(r,g,b), pos={430*SC,35*SC}, size={200*SC,105*SC}, title="from wave", disable=1
-	Groupbox Norm_gp3, frame=0, labelBack=(r,g,b), pos={430*SC,35*SC}, size={200*SC,105*SC}, title="from wave", disable=1
-
-	Listbox bkg_lb0, labelBack=(r,g,b), widths={150*SC,50*SC},pos={435*SC,50*SC}, size={140*SC,60*SC},mode=2,listwave=w_procwavelist,disable=1,proc=Proc_listbox_procwave
+	Listbox bkg_lb0, labelBack=(r,g,b), widths={150,50},pos={435*SC,50*SC}, size={140*SC,60*SC},mode=2,listwave=w_procwavelist,disable=1,proc=Proc_listbox_procwave
 	Button bkg_bt0, labelBack=(r,g,b), pos={580*SC,50*SC}, size={40*SC,20*SC}, title="Disp",disable=1,proc=Proc_bt_Procwave
 	Button bkg_bt1, labelBack=(r,g,b), pos={580*SC,75*SC}, size={40*SC,20*SC}, title="Del",disable=1,proc=Proc_bt_Procwave
 	
-	Groupbox Norm_gp3, frame=0, labelBack=(r,g,b), pos={430*SC,35*SC}, size={200*SC,105*SC}, title="from wave", disable=1
+	//Groupbox Norm_gp3, frame=0, labelBack=(r,g,b), pos={430*SC,95*SC}, size={200*SC,40*SC}, title="from wave", disable=1
 	
 	checkbox bkg_ck11, pos={440*SC,117*SC},size={45*SC,18*SC}, labelback=(r,g,b),title="EDC",disable=1,proc=Proc_checkbox_ProcWchange
 	checkbox bkg_ck21, pos={490*SC,117*SC},size={45*SC,18*SC}, labelback=(r,g,b),title="MDC", disable=1,proc=Proc_checkbox_ProcWchange
@@ -157,7 +155,7 @@ Function add_Tab_process()
 	checkbox Norm_ck11, pos={240*SC,152*SC},size={45*SC,18*SC}, labelback=(r,g,b),title="const", value=1,disable=1,proc=Proc_checkbox_fitchange
 	checkbox Norm_ck21, pos={290*SC,152*SC},size={45*SC,18*SC}, labelback=(r,g,b),title="linear", disable=1,proc=Proc_checkbox_fitchange
 	checkbox  Norm_ck31, pos={240*SC,170*SC},size={40*SC,18*SC}, labelback=(r,g,b),title="poly", disable=1,proc=Proc_checkbox_fitchange
-	SetVariable Norm_sv01, pos={290*SC,170*SC}, size={40*SC,15*SC}, labelBack=(r,g,b), limits={3,20,1}, title=" ", value=gv_polyfit_num,disable=1
+	SetVariable Norm_sv01, pos={290*SC,170*SC}, size={30*SC,15*SC}, labelBack=(r,g,b), limits={3,20,1}, title=" ", value=gv_polyfit_num,disable=1
 
 	Button Norm_b01, pos={340*SC,152*SC},size={50*SC,18*SC}, labelback=(r,g,b),title="Fit", disable=1, proc=Bkg_Func_fit
 	Button Norm_b11, pos={390*SC,152*SC},size={50*SC,18*SC}, labelback=(r,g,b),title="Remove", disable=1, proc=Bkg_Func_fit
